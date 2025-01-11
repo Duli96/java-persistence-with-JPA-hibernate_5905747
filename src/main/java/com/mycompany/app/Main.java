@@ -1,5 +1,7 @@
 package com.mycompany.app;
 
+import com.mycompany.app.entities.Book;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -9,5 +11,17 @@ public class Main {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("library_persistence_unit");
 
     EntityManager em = emf.createEntityManager();
+    try {
+      em.getTransaction().begin();
+      Book book = new Book();
+      book.setName("first book");
+      book.setIsbn("1234");
+
+      em.persist(book);
+      em.getTransaction().commit();
+    } finally {
+      em.close();
+    }
+
   }
 }
