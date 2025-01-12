@@ -1,11 +1,15 @@
 package com.mycompany.app.entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -27,11 +31,22 @@ public class Book {
   @JoinColumn(name = "author_id")
   private Author author;
 
+  @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+  private List<Review> reviews;
+
   public int getId() {
     return id;
   }
 
-  public void setId(int id) {
+ public List<Review> getReviews() {
+  return reviews;
+}
+
+public void setReviews(List<Review> reviews) {
+  this.reviews = reviews;
+}
+
+ public void setId(int id) {
     this.id = id;
   }
 
