@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import com.mycompany.app.entities.Author;
 import com.mycompany.app.entities.Book;
 import com.mycompany.app.entities.Item;
 import com.mycompany.app.entities.keys.ItemKey;
@@ -156,17 +157,17 @@ public class Main {
     try {
       em.getTransaction().begin();
 
-      // Book book = new Book();
-      // book.setName("another book");
-      // book.setIsbn("1010-111");
+      Book book = new Book();
+      book.setName("another book");
+      book.setIsbn("1010-111");
 
-      // Author author = new Author();
-      // author.setName("John");
+      Author author = new Author();
+      author.setName("John");
 
-      // book.setAuthor(author);
+      book.setAuthor(author);
 
-      // em.persist(book);
-      // em.persist(author);
+      em.persist(book);
+      em.persist(author);
 
       em.getTransaction().commit();
 
