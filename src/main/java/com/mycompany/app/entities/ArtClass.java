@@ -33,6 +33,12 @@ public class ArtClass {
   @JoinColumn(name = "teacher_id")
   private Teacher teacher;
 
+  @ManyToMany(cascade = CascadeType.PERSIST)
+  @JoinTable(name = "student_class", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+  private List<Student> students;
+
+  
+
   public Teacher getTeacher() {
     return teacher;
   }
@@ -63,5 +69,13 @@ public class ArtClass {
 
   public void setDayOfWeek(String dayOfWeek) {
     this.dayOfWeek = dayOfWeek;
+  }
+
+  public List<Student> getStudents() {
+    return students;
+  }
+
+  public void setStudents(List<Student> students) {
+    this.students = students;
   }
 }

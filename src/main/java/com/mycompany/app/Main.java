@@ -129,6 +129,26 @@ public class Main {
   }
 
   private static void manyToManyRelationship(EntityManagerFactory emf) {
+    EntityManager em = emf.createEntityManager();
+    try {
+      em.getTransaction().begin();
 
+      ArtClass artClass = em.find(ArtClass.class, 3);
+
+      Student student1 = new Student();
+      student1.setName("Abigail");
+
+      Student student2 = new Student();
+      student2.setName("Anne");
+
+      artClass.getStudents().add(student2);
+      artClass.getStudents().add(student1);
+
+      em.persist(artClass);
+
+      em.getTransaction().commit();
+    } finally {
+      emf.close();
+    }
   }
 }
