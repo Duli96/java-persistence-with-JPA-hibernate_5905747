@@ -83,6 +83,26 @@ public class Main {
   }
 
   private static void oneToOneRelationship(EntityManagerFactory emf) {
+    EntityManager em = emf.createEntityManager();
+    try {
+      em.getTransaction().begin();
+
+      ArtClass artClass = new ArtClass();
+      artClass.setName("Art Class 01");
+      artClass.setDayOfWeek("Monday");
+
+      Teacher teacher = new Teacher();
+      teacher.setName("Joanne");
+
+      artClass.setTeacher(teacher);
+
+      em.persist(teacher);
+      em.persist(artClass);
+
+      em.getTransaction().commit();
+    } finally {
+      emf.close();
+    }
 
   }
 
@@ -91,6 +111,6 @@ public class Main {
   }
 
   private static void manyToManyRelationship(EntityManagerFactory emf) {
-   
+
   }
 }
