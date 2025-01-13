@@ -23,6 +23,17 @@ public class Student {
   @Column(name = "student_name")
   private String name;
 
+  @ManyToMany(mappedBy = "students")
+  private List<ArtClass> artClasses;
+
+  public List<ArtClass> getArtClasses() {
+    return artClasses;
+  }
+
+  public void setArtClasses(List<ArtClass> artClasses) {
+    this.artClasses = artClasses;
+  }
+
   public int getId() {
     return id;
   }
