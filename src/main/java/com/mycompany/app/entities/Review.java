@@ -1,5 +1,6 @@
 package com.mycompany.app.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +22,18 @@ public class Review {
   private String comment;
 
   private int rating;
+
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "teacher_id")
+  private Teacher teacher;
+
+  public Teacher getTeacher() {
+    return teacher;
+  }
+
+  public void setTeacher(Teacher teacher) {
+    this.teacher = teacher;
+  }
 
   public int getId() {
     return id;

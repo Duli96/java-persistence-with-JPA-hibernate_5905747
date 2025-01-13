@@ -23,6 +23,9 @@ public class Teacher {
   @Column(name = "teacher_name")
   private String name;
 
+  @OneToMany(mappedBy = "teacher")
+  private List<Review> reviews;
+
   public int getId() {
     return id;
   }

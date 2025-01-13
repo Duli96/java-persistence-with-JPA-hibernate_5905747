@@ -18,8 +18,8 @@ public class Main {
     // update(emf);
     // attachAndDetach(emf);
     // remove(emf);
-    oneToOneRelationship(emf);
-    oneToManyRelationship(emf);
+    // oneToOneRelationship(emf);
+    // oneToManyRelationship(emf);
     manyToManyRelationship(emf);
   }
 
@@ -107,6 +107,24 @@ public class Main {
   }
 
   private static void oneToManyRelationship(EntityManagerFactory emf) {
+
+    EntityManager em = emf.createEntityManager();
+    try {
+      em.getTransaction().begin();
+
+      Teacher teacher = em.find(Teacher.class, 1);
+
+      Review review = new Review();
+      review.setComment("Good");
+      review.setRating(5);
+      review.setTeacher(teacher);
+
+      em.persist(review);
+
+      em.getTransaction().commit();
+    } finally {
+      emf.close();
+    }
 
   }
 
